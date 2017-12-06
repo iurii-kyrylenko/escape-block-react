@@ -41,9 +41,9 @@ class EscBlock extends Component {
       <div className="escBlock">
         { button (api.fake, 'Fake')}
         { button (api.error, 'Error')}
-        { button (api.fake, 'Info')}
-        { button (api.info, 'Backtrack')}
-        { button (api.backtrack, 'Backtrack Length')}
+        { button (api.info, 'Info')}
+        { button (api.backtrack, 'Backtrack')}
+        { button (api.backtrackLength, 'Backtrack Length')}
         { button (api.length, 'Length')}
         <div className="info">
           <div>{this.state.isLoading ? 'Loading ...' : ''}</div>
