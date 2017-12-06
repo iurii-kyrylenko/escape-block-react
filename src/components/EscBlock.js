@@ -6,8 +6,8 @@ class EscBlock extends Component {
     super()
     this.state = {
       isLoading: false,
-      result: '',
-      error: ''
+      result: null,
+      error: null
     }
   }
 
@@ -15,27 +15,42 @@ class EscBlock extends Component {
     return async () => {
       this.setState({
         isLoading: true,
-        result: ''
+        result: null,
+        error: null
       })
-      const result = await callApi()
-      this.setState({
-        isLoading: false,
-        result
-      })
+      try {
+        const result = await callApi()
+        this.setState({
+          isLoading: false,
+          result,
+          error: null
+        })
+      } catch (e) {
+        this.setState({
+          isLoading: false,
+          result: null,
+          error: e.message
+        })
+      }
     }
   }
 
   render() {
+    const button = (api, text) => <button onClick={this.selectApi(api)}>{text}</button>
     return (
-      <div>
-        <button onClick={ this.selectApi(api.fake) }>Fake</button>&nbsp;
-        <button onClick={ this.selectApi(api.info) }>Info</button>&nbsp;
-        <button onClick={ this.selectApi(api.backtrack) }>Backtrack</button>&nbsp;
-        <button onClick={ this.selectApi(api.backtrackLength) }>Backtrack Length</button>&nbsp;
-        <button onClick={ this.selectApi(api.length) }>Length</button>
-        <div>{ this.state.isLoading ? 'Loading ...' : '' }</div>
-        <pre>{ this.state.result }</pre>
+      <div className="escBlock">
+        { button (api.fake, 'Fake')}
+        { button (api.error, 'Error')}
+        { button (api.fake, 'Info')}
+        { button (api.info, 'Backtrack')}
+        { button (api.backtrack, 'Backtrack Length')}
+        { button (api.length, 'Length')}
+        <div className="info">
+          <div>{this.state.isLoading ? 'Loading ...' : ''}</div>
+          <div className="error">{this.state.error ? `Error: ${this.state.error}` : ''}</div>
+          <div>{this.state.result}</div>
         </div>
+      </div>
     )
   }
 }

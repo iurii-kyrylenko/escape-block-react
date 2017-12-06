@@ -21,6 +21,10 @@ const api = {
     return new Promise(resolve => setTimeout(() => resolve(42), 1000))
   },
 
+  async error() {
+    return new Promise((_, error) => setTimeout(() => error(new Error(42)), 1000))
+  },
+
   async getText(url) {
     const response = await fetch(url)
     const text = await response.text()
@@ -38,7 +42,7 @@ const api = {
   },
   
   async info() {
-    return api.getText('https://esc-block.herokuapp.com/')
+    return api.getText('https://esc-block.herokuapp.com')
   },
   
   async backtrack() {
@@ -56,6 +60,7 @@ const api = {
 
 export default {
   fake: api.fake,
+  error: api.error,
   info: api.info,
   backtrack: api.backtrack,
   backtrackLength: api.backtrackLength,

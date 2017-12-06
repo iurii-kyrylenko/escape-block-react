@@ -4,7 +4,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 60s linear;
   height: 80px;
 }
 
@@ -22,6 +22,21 @@
 .App-intro {
   font-size: large;
 }
+
+.escBlock button {
+  margin-right: 4px;
+}
+.escBlock .info{
+  width: 300px;
+  margin-top: 20px;
+  font-family: 'monospace';
+  font-size: 0.8em;
+}
+
+.escBlock .error{
+  color: #f00;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
