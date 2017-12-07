@@ -11,9 +11,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "flow-bin": "^0.60.1"
+    "flow-bin": "^0.60.1",
+    "gh-pages": "^1.1.0"
   }
 }
