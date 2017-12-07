@@ -1,3 +1,5 @@
+// @flow
+
 const api = {
   data: {
     board: [
@@ -17,21 +19,21 @@ const api = {
     target: { index: 1, position: 4 }
   },
   
-  async fake() {
+  async fake(): Promise<number> {
     return new Promise(resolve => setTimeout(() => resolve(42), 1000))
   },
 
-  async error() {
+  async error(): Promise<Error> {
     return new Promise((_, error) => setTimeout(() => error(new Error(42)), 1000))
   },
 
-  async getText(url) {
+  async getText(url): Promise<string> {
     const response = await fetch(url)
     const text = await response.text()
     return text
   },
 
-  async getJson(url) {
+  async getJson(url): Promise<string> {
     const fetchData = {
       method: 'POST',
       body: JSON.stringify(this.data)
@@ -41,19 +43,19 @@ const api = {
     return JSON.stringify(json)
   },
   
-  async info() {
+  async info(): Promise<string> {
     return api.getText('https://esc-block.herokuapp.com')
   },
   
-  async backtrack() {
+  async backtrack(): Promise<string> {
     return api.getJson('https://esc-block.herokuapp.com/backtrack')
   },
 
-  async backtrackLength() {
+  async backtrackLength(): Promise<string> {
     return api.getJson('https://esc-block.herokuapp.com/backtrack-length')
   },
 
-  async length() {
+  async length(): Promise<string> {
     return api.getJson('https://esc-block.herokuapp.com/length')
   }
 }

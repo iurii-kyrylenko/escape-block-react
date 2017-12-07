@@ -1,17 +1,22 @@
+// @flow
+
 import React, { Component } from 'react'
 import api from '../services/api'
 
-class EscBlock extends Component {
-  constructor() {
-    super()
-    this.state = {
-      isLoading: false,
-      result: null,
-      error: null
-    }
+type State = {
+  isLoading: boolean,
+  result: any,
+  error: string | null
+};
+
+class EscBlock extends Component<{}, State> {
+  state = {
+    isLoading: false,
+    result: null,
+    error: null
   }
 
-  selectApi(callApi) {
+  selectApi(callApi: () => Promise<string | number | Error>) {
     return async () => {
       this.setState({
         isLoading: true,
@@ -39,12 +44,12 @@ class EscBlock extends Component {
     const button = (api, text) => <button onClick={this.selectApi(api)}>{text}</button>
     return (
       <div className="escBlock">
-        { button (api.fake, 'Fake')}
-        { button (api.error, 'Error')}
-        { button (api.info, 'Info')}
-        { button (api.backtrack, 'Backtrack')}
-        { button (api.backtrackLength, 'Backtrack Length')}
-        { button (api.length, 'Length')}
+        {button(api.fake, 'Fake')}
+        {button(api.error, 'Error')}
+        {button(api.info, 'Info')}
+        {button(api.backtrack, 'Backtrack')}
+        {button(api.backtrackLength, 'Backtrack Length')}
+        {button(api.length, 'Length')}
         <div className="info">
           <div>{this.state.isLoading ? 'Loading ...' : ''}</div>
           <div className="error">{this.state.error ? `Error: ${this.state.error}` : ''}</div>

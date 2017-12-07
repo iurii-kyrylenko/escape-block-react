@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import EscBlock from './components/EscBlock';
+// @flow
 
-class App extends Component {
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './App.css'
+import EscBlock from './components/EscBlock'
+
+class App extends Component<{}> {
   render() {
     return (
       <div className="App">
@@ -16,8 +18,8 @@ class App extends Component {
         </p>
         <EscBlock />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
