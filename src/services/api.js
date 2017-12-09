@@ -24,12 +24,14 @@ const api = {
   },
 
   async error(): Promise<Error> {
-    return new Promise((_, error) => setTimeout(() => error(new Error(42)), 1000))
+    return new Promise((_, error) => setTimeout(() =>
+      error(new Error(`<h1>Error</h1>42`)), 1000))
   },
 
   async getText(url): Promise<string> {
     const response = await fetch(url)
     const text = await response.text()
+    if (!response.ok) throw Error(text)
     return text
   },
 
@@ -39,6 +41,10 @@ const api = {
       body: JSON.stringify(this.data)
     }
     const response = await fetch(url, fetchData)
+    if (!response.ok) {
+      const text = await response.text()
+      throw Error(text)
+    }
     const json = await response.json()
     return JSON.stringify(json)
   },

@@ -42,6 +42,8 @@ class EscBlock extends Component<{}, State> {
 
   render() {
     const button = (api, text) => <button onClick={this.selectApi(api)}>{text}</button>
+    const error = this.state.error &&
+      <div className="error" dangerouslySetInnerHTML={{__html: `${this.state.error}`}} />
     return (
       <div className="escBlock">
         {button(api.fake, 'Fake')}
@@ -52,7 +54,7 @@ class EscBlock extends Component<{}, State> {
         {button(api.length, 'Length')}
         <div className="info">
           <div>{this.state.isLoading ? 'Loading ...' : ''}</div>
-          <div className="error">{this.state.error ? `Error: ${this.state.error}` : ''}</div>
+          {error}
           <div>{this.state.result}</div>
         </div>
       </div>
