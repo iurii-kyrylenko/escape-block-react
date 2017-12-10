@@ -1,0 +1,21 @@
+.board {
+  position: relative;
+  background-color: #eec9b4;
+  border: 4px solid #cf5500;
+}
+
+.block {
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid #eec9b4;
+  background-color: #e7760d;
+}
+
+.target {
+  background-color: #e00000;
+}
+
+.exit {
+  position: absolute;
+  background-color: #eec9b4;
+}
