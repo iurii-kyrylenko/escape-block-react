@@ -6,3 +6,14 @@ Uses REST API from the [escape-block-rest server](https://github.com/iurii-kyryl
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+### Run locally
+> yarn start
+> npm start
+
+### Deploy to gh-pages
+> yarn deploy
+> npm run deploy
+
+### Deploy storybook to gh-pages
+> yarn deploy-storybook
+> npm run deploy-storybook
