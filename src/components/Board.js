@@ -40,11 +40,14 @@ class Board extends Component<{}, BoardStateType> {
     const { board, state, target } = this.state;
     const targetBlock = board[target.index];
     const gatePos = dir => target.position === 0 ? -4 : (dir === 'h' ? COLS : ROWS) * CELL;
-    const gateHeight = targetBlock.row === ROWS - 1 ? CELL + 2 : CELL + 3;
-    const gateWidth = targetBlock.row === COLS - 1 ? CELL + 2 : CELL + 3;
+    const gateOffset = targetBlock.row === 0 ? 0 : targetBlock.row * CELL - 1;
+    const gateSpan = dir =>
+      (dir === 'h' && targetBlock.row === ROWS - 1) ||
+      (dir === 'v' && targetBlock.row === COLS - 1)
+        ? CELL + 1 : CELL + 2;
     const gateStyle = targetBlock.dir === 'h'
-      ? { width: 4, height: gateHeight, top: targetBlock.row * CELL - 1, left: gatePos('h') }
-      : { width: gateWidth, height: 4, top: gatePos('v'), left: targetBlock.row * CELL - 1 };
+      ? { width: 4, height: gateSpan('h'), top: gateOffset, left: gatePos('h') }
+      : { width: gateSpan('v'), height: 4, top: gatePos('v'), left: gateOffset };
 
     return (
       <div className="board" style={{ width: COLS * CELL, height: ROWS * CELL }}>
